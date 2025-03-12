@@ -1,0 +1,1 @@
+# naitei_ruby_10_02_2025_food_and_drink
