@@ -17,3 +17,25 @@
 .button-common {
   @apply flex justify-center items-center mt-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
 }
+
+.pagy {
+  @apply flex space-x-1 font-semibold text-sm text-gray-500;
+  a:not(.gap) {
+    @apply block rounded-lg px-3 py-1 bg-gray-200;
+    &:hover {
+      @apply bg-gray-300;
+    }
+    &:not([href]) {
+      @apply text-gray-300 bg-gray-100 cursor-default;
+    }
+    &.current {
+      @apply text-white bg-gray-400;
+    }
+  }
+  label {
+    @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
+    input {
+      @apply bg-gray-100 border-none rounded-md;
+    }
+  }
+}

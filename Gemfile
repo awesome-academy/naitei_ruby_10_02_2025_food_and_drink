@@ -58,4 +58,5 @@ group :test do
   gem "webdrivers"
 end
 
+gem "pagy"
 gem "tailwindcss-rails", "~> 3.3"
