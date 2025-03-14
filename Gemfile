@@ -23,7 +23,7 @@ gem "jbuilder"
 
 # gem "kredis"
 
-# gem "bcrypt", "~> 3.1.7"
+gem "bcrypt", "~> 3.1.7"
 
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
 
@@ -44,6 +44,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "pry-rails", "~> 0.3.4"
   gem "web-console"
 
   # gem "rack-mini-profiler"
@@ -57,6 +58,4 @@ group :test do
   gem "webdrivers"
 end
 
-gem "tailwindcss-ruby", "~> 4.0"
-
-gem "tailwindcss-rails", "~> 4.2"
+gem "tailwindcss-rails", "~> 3.3"

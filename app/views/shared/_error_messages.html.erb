@@ -1,0 +1,13 @@
+<% if object.errors.any? %>
+  <div id="error_explanation" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg shadow-md">
+    <div class="font-semibold">
+      <%= t "the_form_contains" %>
+      <%= pluralize object.errors.count, "error" %>.
+    </div>
+    <ul class="mt-2 list-disc list-inside">
+      <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

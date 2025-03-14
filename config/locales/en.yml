@@ -1,2 +1,21 @@
 en:
-  hello: "Hello world"
+  english: "English"
+  vietnamese: "Vietnamese"
+  hello: "Hello"
+  home: "Home"
+  logout: "Logout"
+  profile: "Profile"
+  password: "Password"
+  login:
+    name: "Login"
+    description: "Login to continue"
+    dont_have_account: "Don't have account?"
+    sign_up_now: "Sign up now"
+    not_valid_account: "Invalid email or password combination!"
+  product:
+    name: "Product"
+  order:
+    name: "Order"
+    order_history: "Order history"
+  message:
+    name: "Message"
