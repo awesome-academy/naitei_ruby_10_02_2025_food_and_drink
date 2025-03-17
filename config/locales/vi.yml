@@ -1,2 +1,21 @@
 vi:
+  english: "Tiếng Anh"
+  vietnamese: "Tiếng Việt"
   hello: "Xin chào"
+  home: "Trang chủ"
+  logout: "Đăng xuất"
+  profile: "Hồ sơ"
+  password: "Mật khẩu"
+  login:
+    name: "Đăng nhập"
+    description: "Đăng nhập để tiếp tục"
+    dont_have_account: "Chưa có tài khoản?"
+    sign_up_now: "Đăng ký ngay"
+    not_valid_account: "Email hoặc mật khẩu không hợp lệ!"
+  product:
+    name: "Sản phẩm"
+  order:
+    name: "Đơn hàng"
+    order_history: "Lịch sử đơn hàng"
+  message:
+    name: "Tin nhắn"
