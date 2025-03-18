@@ -1,0 +1,21 @@
+<div class="bg-white rounded-lg shadow-md overflow-hidden">
+  <div class="aspect-square relative">
+    <img src="#" alt="product" class="object-cover w-full h-full transition-transform hover:scale-105">
+  </div>
+  <div class="p-4">
+    <h3 class="font-semibold">
+      <%= product.name %>
+    </h3>
+    <p class="text-blue-600 font-medium">
+      <%= product.price %>
+    </p>
+  </div>
+  <div class="p-4 pt-0 flex gap-2">
+    <button class="add-to-cart-btn p-2 border border-gray-300 rounded-md hover:bg-gray-50">
+        <i class="fa-solid fa-shopping-cart h-4 w-4"></i>
+    </button>
+    <%= link_to "#", class: "flex-1 text-center py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors" do %>
+      <%= t "product.view_details" %>
+    <% end %>
+  </div>
+</div>

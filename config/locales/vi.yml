@@ -14,8 +14,10 @@ vi:
     not_valid_account: "Email hoặc mật khẩu không hợp lệ!"
   product:
     name: "Sản phẩm"
+    view_details: "Xem chi tiết"
   order:
     name: "Đơn hàng"
     order_history: "Lịch sử đơn hàng"
   message:
     name: "Tin nhắn"
+  all: "Tất cả"

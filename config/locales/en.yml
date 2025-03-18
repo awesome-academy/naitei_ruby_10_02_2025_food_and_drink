@@ -14,8 +14,10 @@ en:
     not_valid_account: "Invalid email or password combination!"
   product:
     name: "Product"
+    view_details: "View details"
   order:
     name: "Order"
     order_history: "Order history"
   message:
     name: "Message"
+  all: "All"

@@ -1,0 +1,17 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">
+    <%= t "product.name" %>
+  </h1>
+  <div class="flex flex-wrap gap-2 mb-6">
+    <%= link_to t("all"), products_path,
+      class: "category-pill px-3 py-1 rounded-full text-sm #{params[:category_id].present? ? "bg-gray-100 text-gray-700 hover:bg-gray-200" : "bg-blue-600 text-white"}" %>
+    <%= render partial: "category_label_item", collection: @categories, as: :category %>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-container">
+    <%= render @products %>
+  </div>
+  <div class="mt-8 flex justify-center">
+    <%== pagy_nav(@pagy) %>
+  </div>
+</div>

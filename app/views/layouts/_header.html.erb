@@ -14,7 +14,7 @@
             <i class="fa-solid fa-home mr-1 h-4 w-4"></i>
             <%= t "home" %>
           <% end %>
-          <%= link_to "#", class: "nav-item" do %>
+          <%= link_to products_path, class: "nav-item" do %>
             <i class="fa-solid fa-mug-hot mr-1 h-4 w-4"></i>
             <%= t "product.name" %>
           <% end %>
@@ -88,10 +88,10 @@
           <%= t "home" %>
         </div>
       <% end %>
-      <%= link_to "#", class: "nav-mobile-item" do %>
+      <%= link_to products_path, class: "nav-mobile-item" do %>
         <div class="flex items-center">
           <i class="fa-solid fa-mug-hot mr-2 h-5 w-5"></i>
-          <%= t "product" %>
+          <%= t "product.name" %>
         </div>
       <% end %>
       <%= link_to "#", class: "nav-mobile-item" do %>
