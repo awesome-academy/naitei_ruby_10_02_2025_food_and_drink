@@ -15,6 +15,8 @@ vi:
   product:
     name: "Sản phẩm"
     view_details: "Xem chi tiết"
+    image_format: "Chỉ chấp nhận định dạng ảnh: %{formats}"
+    image_size: "Kích thước ảnh không được vượt quá 5MB"
   order:
     name: "Đơn hàng"
     order_history: "Lịch sử đơn hàng"

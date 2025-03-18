@@ -5,6 +5,16 @@ class Product < ApplicationRecord
             numericality: {greater_than: Settings.min_price}
   validates :description, presence: true,
             length: {maximum: Settings.max_description_length}
+  validates :image,
+            content_type: {
+              in: Settings.image_types,
+              message: I18n.t("product.image_format")
+            },
+            size: {
+              less_than: Settings.max_image_size.megabytes,
+              message: I18n.t("product.image_size")
+            }
+  has_one_attached :image
   has_many :reviews, dependent: :destroy
   has_many :order_items, dependent: :destroy
   has_many :product_categories, dependent: :destroy

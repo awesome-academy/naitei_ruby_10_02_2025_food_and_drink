@@ -58,5 +58,7 @@ group :test do
   gem "webdrivers"
 end
 
+gem "active_storage_validations", "0.9.8"
+gem "image_processing", "1.12.2"
 gem "pagy"
 gem "tailwindcss-rails", "~> 3.3"
