@@ -1,4 +1,14 @@
 en:
+  number:
+    currency:
+      format:
+        format: "%u%n"
+        unit: "$"
+        separator: "."
+        delimiter: ","
+        precision: 2
+  exchange_rate:
+    vnd_to_usd: 1
   english: "English"
   vietnamese: "Vietnamese"
   hello: "Hello"
@@ -17,6 +27,13 @@ en:
     view_details: "View details"
     image_format: "Only accept image formats: %{formats}"
     image_size: "Image size should not exceed 5MB"
+    quantity: "Quantity"
+    add_to_cart: "Add to cart"
+    back_to_products_list: "Back to products list"
+    related_products: "Related products"
+    product_not_found: "Product not found"
+  category:
+    name: "Category"
   order:
     name: "Order"
     order_history: "Order history"

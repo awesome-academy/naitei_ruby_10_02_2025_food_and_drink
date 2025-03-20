@@ -24,4 +24,13 @@ class Product < ApplicationRecord
       joins(:product_categories).where(product_categories: {category_id:})
     end
   }
+
+  def price_in
+    case I18n.locale
+    when :en
+      price * I18n.t("exchange_rate.vnd_to_usd")
+    else
+      price * I18n.t("exchange_rate.usd_to_vnd")
+    end
+  end
 end

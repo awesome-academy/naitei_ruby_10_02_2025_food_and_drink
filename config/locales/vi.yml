@@ -1,4 +1,14 @@
 vi:
+  number:
+    currency:
+      format:
+        format: "%n %u"
+        unit: "₫"
+        separator: ","
+        delimiter: "."
+        precision: 0
+  exchange_rate:
+    usd_to_vnd: 25000
   english: "Tiếng Anh"
   vietnamese: "Tiếng Việt"
   hello: "Xin chào"
@@ -17,6 +27,13 @@ vi:
     view_details: "Xem chi tiết"
     image_format: "Chỉ chấp nhận định dạng ảnh: %{formats}"
     image_size: "Kích thước ảnh không được vượt quá 5MB"
+    quantity: "Số lượng"
+    add_to_cart: "Thêm vào giỏ hàng"
+    back_to_products_list: "Quay lại danh sách sản phẩm"
+    related_products: "Sản phẩm liên quan"
+    product_not_found: "Không tìm thấy sản phẩm"
+  category:
+    name: "Danh mục"
   order:
     name: "Đơn hàng"
     order_history: "Lịch sử đơn hàng"
