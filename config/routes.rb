@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
 
     resources :products
-    resources :orders, only: %i(create update destroy)
+    resources :orders
+    get '/cart', to: 'orders#show_guest_cart', as: 'guest_cart'
+    get '/cart/:user_id', to: 'orders#show_cart', as: 'cart'
   end
 end
