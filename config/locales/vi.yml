@@ -37,6 +37,9 @@ vi:
   order:
     name: "Đơn hàng"
     order_history: "Lịch sử đơn hàng"
+    add_success: "Đã thêm sản phẩm vào giỏ hàng"
+    add_fail: "Thêm sản phẩm vào giỏ hàng thất bại"
+    sync_cart_failed: "Đồng bộ giỏ hàng thất bại"
   message:
     name: "Tin nhắn"
   all: "Tất cả"
