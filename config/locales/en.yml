@@ -37,6 +37,9 @@ en:
   order:
     name: "Order"
     order_history: "Order history"
+    add_success: "Added product to cart"
+    add_fail: "Failed to add product to cart"
+    sync_cart_failed: "Failed to sync cart"
   message:
     name: "Message"
   all: "All"
