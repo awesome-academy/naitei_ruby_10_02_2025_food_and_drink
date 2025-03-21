@@ -1,0 +1,62 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">
+    <%= t "order.your_cart" %>
+  </h1>
+
+  <% if @products.present? %>
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-2/3 bg-white rounded-lg shadow-md p-6 mb-6 md:mr-4">
+        <div class="flow-root">
+          <ul class="divide-y divide-gray-200">
+            <%= render partial: "order_product_item", collection: @products, as: :product %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="md:w-1/3 bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-lg font-medium text-gray-900 mb-4">
+          <%= t "order.summary" %>
+        </h2>
+
+        <div class="border-t border-gray-200 py-4">
+          <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
+            <p><%= t "order.subtotal" %></p>
+            <p><%= number_to_currency price_in(@total_price) %></p>
+          </div>
+
+          <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
+            <p><%= t "order.shipping_fee" %></p>
+            <p>0</p>
+          </div>
+
+          <div class="flex justify-between text-lg font-bold text-gray-900 mt-4 pt-4 border-t border-gray-200">
+            <p><%= t "order.total" %></p>
+            <p><%= number_to_currency price_in(@total_price) %></p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <button class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+            <%= t "order.checkout" %>
+          </button>
+
+          <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
+            <p>
+              <%= t "or" %>
+              <%= link_to products_path, class: "text-blue-600 font-medium hover:text-blue-500" do %>
+                <%= t "continue_order" %> <span aria-hidden="true"> &rarr;</span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="text-center py-8">
+      <p class="text-gray-500 text-lg"><%= t "order.cart_empty" %></p>
+      <%= link_to products_path, class: "mt-4 inline-block text-blue-600 font-medium hover:text-blue-500" do %>
+        <%= t "continue_order" %> <span aria-hidden="true"> &rarr;</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
