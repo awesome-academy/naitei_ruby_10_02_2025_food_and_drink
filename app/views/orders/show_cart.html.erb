@@ -18,22 +18,7 @@
           <%= t "order.summary" %>
         </h2>
 
-        <div class="border-t border-gray-200 py-4">
-          <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
-            <p><%= t "order.subtotal" %></p>
-            <p><%= number_to_currency price_in(@total_price) %></p>
-          </div>
-
-          <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
-            <p><%= t "order.shipping_fee" %></p>
-            <p>0</p>
-          </div>
-
-          <div class="flex justify-between text-lg font-bold text-gray-900 mt-4 pt-4 border-t border-gray-200">
-            <p><%= t "order.total" %></p>
-            <p><%= number_to_currency price_in(@total_price) %></p>
-          </div>
-        </div>
+        <%= render "order_items/cart_total", total_price: @total_price %>
 
         <div class="mt-6">
           <button class="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">

@@ -1,0 +1,43 @@
+<div id="order_item_<%= product.id %>_quantity" class="flex items-center space-x-4">
+  <% if logged_in? %>
+    <%= form_with url: order_item_path(order_item), method: :patch, data: { turbo_frame: "_top" } do |f| %>
+      <div class="flex items-center space-x-3">
+        <%= f.button "-", name: "order_item[quantity]", value: order_item.quantity - 1,
+                    class: "w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-50", type: :submit do %>
+          <i class="fa-solid fa-minus h-3 w-3"></i>
+        <% end %>
+        <span class="w-8 text-center font-medium">
+          <%= order_item.quantity %>
+        </span>
+        <%= f.button "+", name: "order_item[quantity]", value: order_item.quantity + 1,
+                    class: "w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-50", type: :submit do %>
+          <i class="fa-solid fa-plus h-3 w-3"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_with url: order_item_path(order_item), method: :delete, data: { turbo_frame: "_top" }, class: "inline" do |f| %>
+      <%= f.button class: "ml-2 p-2 text-red-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors", type: :submit do %>
+        <i class="fa-solid fa-trash-alt h-4 w-4"></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_with url: update_guest_cart_item_path(product_id: product.id), method: :patch, data: { turbo_frame: "_top" } do |f| %>
+      <div class="flex items-center space-x-3">
+        <%= f.button "-", name: "quantity", value: order_item.quantity - 1, class: "w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-50", type: :submit do %>
+          <i class="fa-solid fa-minus h-3 w-3"></i>
+        <% end %>
+        <span class="w-8 text-center font-medium">
+          <%= order_item.quantity %>
+        </span>
+        <%= f.button "+", name: "quantity", value: order_item.quantity + 1, class: "w-8 h-8 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-50", type: :submit do %>
+          <i class="fa-solid fa-plus h-3 w-3"></i>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_with url: remove_guest_cart_item_path(product_id: product.id), method: :delete, data: { turbo_frame: "_top" }, class: "inline" do |f| %>
+      <%= f.button class: "ml-2 p-2 text-red-600 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors", type: :submit do %>
+        <i class="fa-solid fa-trash-alt h-4 w-4"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

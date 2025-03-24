@@ -48,6 +48,10 @@ vi:
     checkout: "Thanh toán"
     not_found: "Không tìm thấy đơn hàng"
     cart_empty: "Giỏ hàng trống"
+  order_item:
+    remove_fail: "Xóa sản phẩm khỏi giỏ hàng thất bại, hãy thử lại"
+    update_fail: "Số lượng sản phẩm không hợp lệ, hãy thử lại"
+    not_found: "Có lỗi xảy ra, hãy thử lại"
   message:
     name: "Tin nhắn"
   all: "Tất cả"

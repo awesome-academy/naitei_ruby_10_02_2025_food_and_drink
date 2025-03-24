@@ -47,6 +47,10 @@ en:
     checkout: "Checkout"
     not_found: "Order not found"
     cart_empty: "Cart is empty"
+  order_item:
+    remove_fail: "Failed to remove product from cart, please try again"
+    update_fail: "Invalid product quantity, please try again"
+    not_found: "Something went wrong, please try again"
   message:
     name: "Message"
   all: "All"
