@@ -30,7 +30,7 @@
       </div>
 
       <div class="flex items-center space-x-4">
-        <%= link_to "#", class: "relative text-gray-500 hover:text-gray-900" do %>
+        <%= link_to logged_in? ? cart_path(user_id: current_user.id) : guest_cart_path, class: "relative text-gray-500 hover:text-gray-900" do %>
           <i class="fa-solid fa-shopping-cart h-6 w-6"></i>
           <span class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
             <%= cart_items_count %>

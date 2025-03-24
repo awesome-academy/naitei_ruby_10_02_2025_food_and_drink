@@ -19,18 +19,11 @@ class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
+
+  scope :by_ids, ->(ids){where id: ids}
   scope :by_category, lambda {|category_id|
     if category_id.present?
       joins(:product_categories).where(product_categories: {category_id:})
     end
   }
-
-  def price_in
-    case I18n.locale
-    when :en
-      price * I18n.t("exchange_rate.vnd_to_usd")
-    else
-      price * I18n.t("exchange_rate.usd_to_vnd")
-    end
-  end
 end
