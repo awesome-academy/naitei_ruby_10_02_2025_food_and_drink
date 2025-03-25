@@ -9,6 +9,23 @@ en:
         precision: 2
   exchange_rate:
     vnd_to_usd: 1
+  activerecord:
+    attributes:
+      order:
+        shipping_address: "Shipping Address"
+        phone_number: "Phone Number"
+    errors:
+      models:
+        order:
+          attributes:
+            shipping_address:
+              blank: "can't be blank"
+            phone_number:
+              blank: "can't be blank"
+              invalid: "is invalid"
+      messages:
+        blank: "can't be blank"
+        invalid: "is invalid"
   english: "English"
   vietnamese: "Vietnamese"
   hello: "Hello"
@@ -47,11 +64,23 @@ en:
     checkout: "Checkout"
     not_found: "Order not found"
     cart_empty: "Cart is empty"
+    confirmed: "Order placed successfully"
+    completed: "Order completed"
+    info: "Order information"
+    payment_method: "Payment method"
+    payment_method_info:
+      cod: "Cash on delivery"
+    detail_info:
+      full_name: "Full name"
+      phone: "Phone number"
+      address: "Address"
   order_item:
     remove_fail: "Failed to remove product from cart, please try again"
     update_fail: "Invalid product quantity, please try again"
     not_found: "Something went wrong, please try again"
   message:
     name: "Message"
+  user:
+    please_login: "Please login to continue..."
   all: "All"
   continue_order: "Continue shopping"

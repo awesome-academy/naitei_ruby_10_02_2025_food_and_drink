@@ -1,0 +1,103 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold mb-6">
+    <%= t "order.checkout" %>
+  </h1>
+
+  <div class="flex justify-between items-center mb-8">
+    <div class="flex flex-col items-center">
+      <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">
+        <i class="fa-solid fa-shopping-cart"></i>
+      </div>
+      <span class="mt-2 text-sm font-medium text-blue-600">
+        <%= t "order.your_cart" %>
+      </span>
+    </div>
+    <div class="flex-1 h-1 bg-blue-600 mx-2"></div>
+    <div class="flex flex-col items-center">
+      <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center">
+        <i class="fa-solid fa-credit-card"></i>
+      </div>
+      <span class="mt-2 text-sm font-medium text-blue-600">
+        <%= t "order.checkout" %>
+      </span>
+    </div>
+    <div class="flex-1 h-1 bg-gray-300 mx-2"></div>
+    <div class="flex flex-col items-center">
+      <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <span class="mt-2 text-sm font-medium text-gray-500">
+        <%= t "order.completed" %>
+      </span>
+    </div>
+  </div>
+
+  <%= form_with model: @order, url: checkout_update_path, method: :patch, scope: :order, local: true, class: "space-y-8" do |form| %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-2 space-y-6">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-4">
+            <%= t "order.info" %>
+          </h2>
+          <%= render "shared/error_messages", object: form.object %>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+            <div>
+              <%= form.label :fullname, t("order.detail_info.full_name"), class: "block text-sm font-medium text-gray-700 mb-2" %>
+              <%= form.text_field :fullname, value: current_user.name, disabled: true, class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+            </div>
+            <div>
+              <%= form.label :phone_number, t("order.detail_info.phone"), class: "block text-sm font-medium text-gray-700 mb-2" %>
+              <%= form.telephone_field :phone_number, placeholder: "0912345678", class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+            </div>
+          </div>
+          <div>
+            <%= form.label :shipping_address, t("order.detail_info.address"), class: "block text-sm font-medium text-gray-700 mb-1" %>
+            <%= form.text_field :shipping_address, placeholder: "123 ABC Street, Ward 4, District 1, Ho Chi Minh City", class: "w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-4">
+            <%= t "order.payment_method" %>
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <%= form.radio_button :payment_method, "cod", checked: true, id: "payment-cod", class: "h-4 w-4 text-blue-600 focus:ring-blue-500" %>
+              <%= form.label :payment_method, t("order.payment_method_info.cod"), class: "ml-3 block text-sm font-medium text-gray-700", for: "payment-cod" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-1">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden sticky top-24 p-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-4">
+            <%= t "order.summary" %>
+          </h2>
+          <div class="flow-root">
+            <ul class="divide-y divide-gray-200">
+              <%= render partial: "checkout_product_item", collection: @products, as: :product %>
+            </ul>
+          </div>
+          <div class="border-t border-gray-200 pt-4 space-y-2">
+            <div class="flex justify-between text-sm text-gray-600">
+              <p><%= t "order.subtotal" %></p>
+              <p><%= number_to_currency price_in(@total_price) %></p>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600">
+              <p><%= t "order.shipping_fee" %></p>
+              <p>0</p>
+            </div>
+            <div class="flex justify-between text-base font-medium text-gray-900 pt-2 border-t border-gray-200">
+              <p><%= t "order.total" %></p>
+              <p><%= number_to_currency price_in(@total_price) %></p>
+            </div>
+          </div>
+          <div class="mt-6">
+            <%= form.submit t("order.checkout"), class: "w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

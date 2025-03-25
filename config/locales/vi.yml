@@ -9,6 +9,23 @@ vi:
         precision: 0
   exchange_rate:
     usd_to_vnd: 25000
+  activerecord:
+    attributes:
+      order:
+        shipping_address: "Địa chỉ"
+        phone_number: "Số điện thoại"
+    errors:
+      models:
+        order:
+          attributes:
+            shipping_address:
+              blank: "không được để trống"
+            phone_number:
+              blank: "không được để trống"
+              invalid: "không hợp lệ"
+      messages:
+        blank: "không được để trống"
+        invalid: "không hợp lệ"
   english: "Tiếng Anh"
   vietnamese: "Tiếng Việt"
   hello: "Xin chào"
@@ -48,12 +65,24 @@ vi:
     checkout: "Thanh toán"
     not_found: "Không tìm thấy đơn hàng"
     cart_empty: "Giỏ hàng trống"
+    confirmed: "Đặt hàng thành công"
+    completed: "Đơn hàng đã hoàn thành"
+    info: "Thông tin đơn hàng"
+    payment_method: "Phương thức thanh toán"
+    payment_method_info:
+      cod: "Thanh toán khi nhận hàng"
+    detail_info:
+      full_name: "Họ và tên"
+      phone: "Số điện thoại"
+      address: "Địa chỉ"
   order_item:
     remove_fail: "Xóa sản phẩm khỏi giỏ hàng thất bại, hãy thử lại"
     update_fail: "Số lượng sản phẩm không hợp lệ, hãy thử lại"
     not_found: "Có lỗi xảy ra, hãy thử lại"
   message:
     name: "Tin nhắn"
+  user:
+    please_login: "Vui lòng đăng nhập để tiếp tục..."
   all: "Tất cả"
   or: "hoặc"
   continue_order: "Tiếp tục mua hàng"

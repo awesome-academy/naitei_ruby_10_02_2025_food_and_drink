@@ -8,7 +8,7 @@ min_price: 0.01
 max_price: 1000
 max_address_length: 200
 max_phone_length: 20
-valid_phone_regex: /\A(0|\+84)[3|5|7|8|9][0-9]{8}\z/
+valid_phone_regex: "/\\A(0|\\+84)[3|5|7|8|9][0-9]{8}\\z/"
 max_product_name_length: 100
 max_description_length: 1000
 min_rating: 1
