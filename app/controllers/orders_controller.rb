@@ -16,11 +16,10 @@ class OrdersController < ApplicationController
       return
     end
 
-    cart = Cart.new current_user, session
     @order_items = order.order_items.includes :product
     product_ids = @order_items.map(&:product_id)
     @products = Product.by_ids product_ids
-    @total_price = cart.total_price order
+    @total_price = calculate_total_price @order_items
   end
 
   def show_guest_cart

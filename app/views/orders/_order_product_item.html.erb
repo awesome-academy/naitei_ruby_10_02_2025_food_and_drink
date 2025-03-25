@@ -1,5 +1,6 @@
-<li class="py-6 flex items-center">
-  <% order_items_by_product_id = @order_items.index_by(&:product_id) %>
+<% order_items_by_product_id = @order_items.index_by(&:product_id) %>
+<% order_item = order_items_by_product_id[product.id] || OrderItem.new(product_id: product.id, quantity: 0, unit_price: product.price) %>
+<li id="order_item_<%= product.id %>" class="py-6 flex items-center">
   <div class="flex-shrink-0 w-24 h-24 rounded-md overflow-hidden mr-4">
     <%= image_tag product.image, alt: "product_image", class: "w-full h-full object-cover" %>
   </div>
@@ -10,24 +11,10 @@
         <%= product.name %>
       </h3>
       <p class="mt-1 text-sm text-gray-500">
-        <% order_item = order_items_by_product_id[product.id] %>
         <%= number_to_currency price_in(order_item.unit_price) %>
       </p>
     </div>
 
-    <div class="flex items-center">
-      <button class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-50">
-        <i class="fa-solid fa-minus h-3 w-3"></i>
-      </button>
-      <span class="mx-2 w-8 text-center">
-        <%= order_item.quantity %>
-      </span>
-      <button class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded-md hover:bg-gray-50">
-        <i class="fa-solid fa-plus h-3 w-3"></i>
-      </button>
-      <button class="ml-4 font-medium text-red-600 hover:text-red-500">
-        <i class="fa-solid fa-trash-alt h-4 w-4"></i>
-      </button>
-    </div>
+    <%= render "order_items/quantity", product: product, order_item: order_item %>
   </div>
 </li>

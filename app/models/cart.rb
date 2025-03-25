@@ -60,12 +60,6 @@ class Cart
   end
 
   def update_total_price order
-    order.update total_price: total_price(order)
-  end
-
-  def total_price order
-    order.order_items.sum do |item|
-      item.unit_price * item.quantity
-    end
+    order.update total_price: order.calculate_total_price
   end
 end

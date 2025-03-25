@@ -1,4 +1,5 @@
 class OrderItem < ApplicationRecord
+  UPDATE_QUANTITY_PARAMS = %i(quantity).freeze
   belongs_to :order
   belongs_to :product
   validates :quantity, presence: true,

@@ -18,4 +18,10 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
+
+  def calculate_total_price
+    order_items.sum do |order_item|
+      order_item.quantity * order_item.unit_price
+    end
+  end
 end

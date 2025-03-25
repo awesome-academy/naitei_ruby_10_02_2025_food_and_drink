@@ -1,0 +1,16 @@
+<div id="cart_total" class="border-t border-gray-200 py-4">
+  <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
+    <p><%= t "order.subtotal" %></p>
+    <p><%= number_to_currency price_in(total_price) %></p>
+  </div>
+
+  <div class="flex justify-between text-base font-medium text-gray-900 mb-2">
+    <p><%= t "order.shipping_fee" %></p>
+    <p>0</p>
+  </div>
+
+  <div class="flex justify-between text-lg font-bold text-gray-900 mt-4 pt-4 border-t border-gray-200">
+    <p><%= t "order.total" %></p>
+    <p><%= number_to_currency price_in(total_price) %></p>
+  </div>
+</div>
