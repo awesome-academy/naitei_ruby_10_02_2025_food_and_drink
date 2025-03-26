@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :logged_in_user?, only: %i(edit update)
+  before_action :find_order, only: %i(edit update)
   def create
     product_id = params[:product_id]
     quantity = params[:quantity].to_i
@@ -9,14 +11,14 @@ class OrdersController < ApplicationController
   end
 
   def show_cart
-    order = Order.find_by user_id: params[:user_id]
-    if order.nil?
-      flash[:danger] = t "order.not_found"
+    @order = Order.find_by user_id: params[:user_id], status: :pending
+    if @order.nil?
+      flash[:danger] = t "order.cart_empty"
       redirect_to root_path
       return
     end
 
-    @order_items = order.order_items.includes :product
+    @order_items = @order.order_items.includes :product
     product_ids = @order_items.map(&:product_id)
     @products = Product.by_ids product_ids
     @total_price = calculate_total_price @order_items
@@ -37,7 +39,43 @@ class OrdersController < ApplicationController
     end
     render :show_cart
   end
+
+  def edit
+    @order_items = @order.order_items.includes :product
+    @products = Product.by_ids @order_items.map(&:product_id)
+    @total_price = calculate_total_price @order_items
+  end
+
+  def update
+    if @order.update order_params.merge(status: :confirmed)
+      flash[:success] = t "order.confirmed"
+      redirect_to root_path
+    else
+      @order_items = @order.order_items.includes :product
+      @products = Product.by_ids @order_items.map(&:product_id)
+      @total_price = calculate_total_price @order_items
+      render :edit, status: :unprocessable_entity
+    end
+  end
   private
+  def logged_in_user?
+    return if logged_in?
+
+    flash[:danger] = t "user.please_login"
+    redirect_to login_path
+  end
+
+  def find_order
+    @order = Order.find_by id: params[:id]
+    return if @order&.status_pending?
+
+    flash[:danger] = t "order.not_found"
+    redirect_to root_path
+  end
+
+  def order_params
+    params.require(:order).permit Order::ORDER_PARAMS
+  end
 
   def add_product_to_cart cart, product_id, quantity
     success = if logged_in?

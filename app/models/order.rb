@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+  ORDER_PARAMS = %i(shipping_address phone_number).freeze
   enum status: {
     pending: 0,
     confirmed: 1,

@@ -1,0 +1,18 @@
+<% order_items_by_product_id = @order_items.index_by(&:product_id) %>
+<% order_item = order_items_by_product_id[product.id]  %>
+<li class="py-3 flex">
+  <div class="flex-shrink-0 w-16 h-16 rounded-md overflow-hidden">
+    <%= image_tag product.image, alt: "product", class: "w-full h-full object-cover" %>
+  </div>
+
+  <div class="ml-4 flex-1">
+    <div class="flex justify-between">
+      <h3 class="text-sm font-medium">
+        <%= product.name %>
+      </h3>
+      <p class="text-sm font-medium text-gray-900">
+        <%= number_to_currency price_in(order_item.unit_price) %> x <%= order_item.quantity %>
+      </p>
+    </div>
+  </div>
+</li>
