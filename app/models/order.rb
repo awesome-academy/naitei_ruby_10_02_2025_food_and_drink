@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   ORDER_PARAMS = %i(shipping_address phone_number).freeze
   enum status: {
+    draft: -1,
     pending: 0,
     confirmed: 1,
     delivered: 2,
@@ -19,6 +20,11 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
+
+  scope :by_user_id, ->(user_id){where user_id:}
+  scope :not_draft, ->{where.not(status: :draft)}
+  scope :order_by_created_at, ->{order created_at: :desc}
+  scope :by_status, ->(status){where status:}
 
   def calculate_total_price
     order_items.sum do |order_item|

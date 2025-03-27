@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get "/cart/:user_id", to: "orders#show_cart", as: "cart"
     get "/checkout/:id", to: "orders#edit", as: "checkout"
     patch "/checkout/:id", to: "orders#update", as: "checkout_update"
+    get "users/:user_id/orders/history", to: "orders#view_history", as: "user_orders_history"
 
     resources :order_items, only: %i(update destroy)
     patch "/guest_cart_items/:product_id", to: "order_items#update_guest_cart_item", as: "update_guest_cart_item"

@@ -1,4 +1,7 @@
 vi:
+  time:
+    formats:
+      long: "%d/%m/%Y %H:%M"
   number:
     currency:
       format:
@@ -65,7 +68,7 @@ vi:
     checkout: "Thanh toán"
     not_found: "Không tìm thấy đơn hàng"
     cart_empty: "Giỏ hàng trống"
-    confirmed: "Đặt hàng thành công"
+    pending: "Đặt hàng thành công, hãy chờ xác nhận từ chúng tôi"
     completed: "Đơn hàng đã hoàn thành"
     info: "Thông tin đơn hàng"
     payment_method: "Phương thức thanh toán"
@@ -75,6 +78,18 @@ vi:
       full_name: "Họ và tên"
       phone: "Số điện thoại"
       address: "Địa chỉ"
+    status:
+      name: "Trạng thái"
+      pending: "Chờ xác nhận"
+      confirmed: "Đã xác nhận"
+      delivered: "Đã giao"
+      canceled: "Đã hủy"
+    order_date: "Ngày đặt hàng"
+    item_count: "Số lượng"
+    details: "Chi tiết"
+    reorder: "Đặt lại"
+    number: "Mã đơn hàng"
+    cancel: "Hủy đơn hàng"
   order_item:
     remove_fail: "Xóa sản phẩm khỏi giỏ hàng thất bại, hãy thử lại"
     update_fail: "Số lượng sản phẩm không hợp lệ, hãy thử lại"
@@ -83,6 +98,7 @@ vi:
     name: "Tin nhắn"
   user:
     please_login: "Vui lòng đăng nhập để tiếp tục..."
+    permission_denied: "Bạn không có quyền truy cập trang này"
   all: "Tất cả"
   or: "hoặc"
   continue_order: "Tiếp tục mua hàng"
