@@ -17,5 +17,9 @@ Rails.application.routes.draw do
     resources :order_items, only: %i(update destroy)
     patch "/guest_cart_items/:product_id", to: "order_items#update_guest_cart_item", as: "update_guest_cart_item"
     delete "/guest_cart_items/:product_id", to: "order_items#remove_guest_cart_item", as: "remove_guest_cart_item"
+
+    namespace :admin do
+      resources :orders
+    end
   end
 end
