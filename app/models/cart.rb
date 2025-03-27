@@ -36,7 +36,7 @@ class Cart
 
   def find_or_create_pending_order quantity, product
     @user.orders.find_or_create_by(user_id: @user.id,
-                                   status: :pending) do |order|
+                                   status: :draft) do |order|
       order.total_price = product.price * quantity
     end
   end

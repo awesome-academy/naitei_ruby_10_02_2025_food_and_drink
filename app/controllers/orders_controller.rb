@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :logged_in_user?, only: %i(edit update)
+  before_action :logged_in_user?, only: %i(edit update view_history)
+  before_action :correct_user, only: %i(edit update view_history)
   before_action :find_order, only: %i(edit update)
   def create
     product_id = params[:product_id]
@@ -11,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def show_cart
-    @order = Order.find_by user_id: params[:user_id], status: :pending
+    @order = Order.find_by user_id: params[:user_id], status: :draft
     if @order.nil?
       flash[:danger] = t "order.cart_empty"
       redirect_to root_path
@@ -47,8 +48,8 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update order_params.merge(status: :confirmed)
-      flash[:success] = t "order.confirmed"
+    if @order.update order_params.merge(status: :pending)
+      flash[:success] = t "order.pending"
       redirect_to root_path
     else
       @order_items = @order.order_items.includes :product
@@ -56,6 +57,16 @@ class OrdersController < ApplicationController
       @total_price = calculate_total_price @order_items
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def view_history
+    @pagy, @orders = pagy Order.by_user_id(params[:user_id])
+                               .includes(:order_items)
+                               .includes(:products)
+                               .not_draft
+                               .order_by_created_at,
+                          limit: Settings.pagy_items
+    @orders = @orders.by_status(params[:status]) if params[:status].present?
   end
   private
   def logged_in_user?
@@ -65,9 +76,16 @@ class OrdersController < ApplicationController
     redirect_to login_path
   end
 
+  def correct_user
+    return if current_user.id == params[:user_id].to_i
+
+    flash[:danger] = t "user.permission_denied"
+    redirect_to root_path
+  end
+
   def find_order
     @order = Order.find_by id: params[:id]
-    return if @order&.status_pending?
+    return if @order&.status_draft?
 
     flash[:danger] = t "order.not_found"
     redirect_to root_path

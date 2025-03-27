@@ -1,4 +1,7 @@
 en:
+  time:
+    formats:
+      long: "%B %d, %Y %H:%M"
   number:
     currency:
       format:
@@ -64,7 +67,7 @@ en:
     checkout: "Checkout"
     not_found: "Order not found"
     cart_empty: "Cart is empty"
-    confirmed: "Order placed successfully"
+    pending: "Order success, please wait for confirmation"
     completed: "Order completed"
     info: "Order information"
     payment_method: "Payment method"
@@ -74,6 +77,17 @@ en:
       full_name: "Full name"
       phone: "Phone number"
       address: "Address"
+    status:
+      name: "Status"
+      pending: "Pending"
+      confirmed: "Confirmed"
+      delivered: "Delivered"
+      canceled: "Canceled"
+    order_date: "Order date"
+    item_count: "Item count"
+    details: "Order details"
+    reorder: "Reorder"
+    number: "Order number"
   order_item:
     remove_fail: "Failed to remove product from cart, please try again"
     update_fail: "Invalid product quantity, please try again"
@@ -82,5 +96,6 @@ en:
     name: "Message"
   user:
     please_login: "Please login to continue..."
+    permission_denied: "Permission denied, you are not allowed to access this page"
   all: "All"
   continue_order: "Continue shopping"
