@@ -26,4 +26,19 @@ class Product < ApplicationRecord
       joins(:product_categories).where(product_categories: {category_id:})
     end
   }
+  scope :by_name, lambda {|name|
+    where "LOWER(name) LIKE ?", "%#{name.downcase}%" if name.present?
+  }
+  scope :by_sort, lambda {|sort|
+    case sort
+    when Settings.sort_name_asc
+      order name: :asc
+    when Settings.sort_name_desc
+      order name: :desc
+    when Settings.sort_price_asc
+      order price: :asc
+    when Settings.sort_price_desc
+      order price: :desc
+    end
+  }
 end
