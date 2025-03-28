@@ -103,6 +103,9 @@ vi:
     update_fail: "Cập nhật trạng thái đơn hàng thất bại vì trạng thái cập nhật không được thấp hơn trạng thái hiện tại"
     delete_success: "Xóa đơn hàng thành công"
     delete_fail: "Xóa đơn hàng thất bại"
+    cancel_success: "Hủy đơn hàng thành công"
+    cancel_failed: "Hủy đơn hàng thất bại"
+    confirm_cancel_title: "Xác nhận hủy đơn hàng"
   order_item:
     remove_fail: "Xóa sản phẩm khỏi giỏ hàng thất bại, hãy thử lại"
     update_fail: "Số lượng sản phẩm không hợp lệ, hãy thử lại"

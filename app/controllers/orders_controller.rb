@@ -1,7 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :logged_in_user?, only: %i(edit update view_history)
-  before_action :correct_user, only: %i(edit update view_history)
+  before_action :logged_in_user?,
+                only: %i(edit update view_history cancel_order)
+  before_action :correct_user, only: %i(edit update view_history cancel_order)
   before_action :find_order, only: %i(edit update)
+  before_action :find_order_cancel, only: :cancel_order
   def create
     product_id = params[:product_id]
     quantity = params[:quantity].to_i
@@ -63,10 +65,20 @@ class OrdersController < ApplicationController
     @pagy, @orders = pagy Order.by_user_id(params[:user_id])
                                .includes(:order_items)
                                .includes(:products)
+                               .includes(:user)
                                .not_draft
                                .order_by_created_at,
                           limit: Settings.pagy_items
     @orders = @orders.by_status(params[:status]) if params[:status].present?
+  end
+
+  def cancel_order
+    if @order.update status: :canceled
+      flash[:success] = t "order.cancel_success"
+    else
+      flash[:danger] = t "order.cancel_failed"
+    end
+    redirect_to view_history_path(user_id: current_user.id)
   end
   private
 
@@ -80,6 +92,14 @@ class OrdersController < ApplicationController
   def find_order
     @order = Order.find_by id: params[:id]
     return if @order&.status_draft?
+
+    flash[:danger] = t "order.not_found"
+    redirect_to root_path
+  end
+
+  def find_order_cancel
+    @order = Order.find_by id: params[:id]
+    return if @order&.status_pending?
 
     flash[:danger] = t "order.not_found"
     redirect_to root_path

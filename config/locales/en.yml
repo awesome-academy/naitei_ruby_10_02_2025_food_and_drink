@@ -100,6 +100,9 @@ en:
     update_fail: "Cannot update order status to a lower status than current status"
     delete_success: "Delete order successfully"
     delete_fail: "Delete order failed"
+    cancel_success: "Cancel order successfully"
+    cancel_failed: "Cancel order failed"
+    confirm_cancel_title: "Cancel confirmation"
   order_item:
     remove_fail: "Failed to remove product from cart, please try again"
     update_fail: "Invalid product quantity, please try again"

@@ -6,12 +6,12 @@
   <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
     <div class="p-6">
       <div class="flex flex-wrap gap-4 mb-4">
-        <%= link_to t("all"), user_orders_history_path(user_id: params[:user_id]),
+        <%= link_to t("all"), view_history_path(user_id: params[:user_id]),
           class: "px-4 py-2 rounded-md #{params[:status].blank? ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}" %>
 
         <% Order.statuses.keys.each do |status| %>
           <%= link_to t("order.status.#{status}"),
-                      user_orders_history_path(user_id: params[:user_id], status: status),
+                      view_history_path(user_id: params[:user_id], status: status),
                       class: "px-4 py-2 rounded-md #{params[:status] == status ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}" %>
         <% end %>
       </div>
