@@ -22,3 +22,7 @@ min_password_length: 6
 pagy_items: 5
 image_types: ["image/jpeg", "image/png", "image/gif"]
 max_image_size: 5
+sort_name_asc: "name-asc"
+sort_name_desc: "name-desc"
+sort_price_asc: "price-asc"
+sort_price_desc: "price-desc"
