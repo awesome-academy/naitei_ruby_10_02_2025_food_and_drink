@@ -17,6 +17,11 @@ vi:
       order:
         shipping_address: "Địa chỉ"
         phone_number: "Số điện thoại"
+        id: "Mã đơn hàng"
+        user: "Người đặt"
+        created_at: "Ngày đặt hàng"
+        status: "Trạng thái"
+        total_price: "Tổng cộng"
     errors:
       models:
         order:
@@ -90,6 +95,14 @@ vi:
     reorder: "Đặt lại"
     number: "Mã đơn hàng"
     cancel: "Hủy đơn hàng"
+    manage_orders: "Quản lý đơn hàng"
+    new_order: "Đơn hàng mới"
+    apply_filters: "Áp dụng bộ lọc"
+    update_status: "Cập nhật trạng thái"
+    update_success: "Cập nhật trạng thái đơn hàng thành công"
+    update_fail: "Cập nhật trạng thái đơn hàng thất bại vì trạng thái cập nhật không được thấp hơn trạng thái hiện tại"
+    delete_success: "Xóa đơn hàng thành công"
+    delete_fail: "Xóa đơn hàng thất bại"
   order_item:
     remove_fail: "Xóa sản phẩm khỏi giỏ hàng thất bại, hãy thử lại"
     update_fail: "Số lượng sản phẩm không hợp lệ, hãy thử lại"
@@ -102,3 +115,11 @@ vi:
   all: "Tất cả"
   or: "hoặc"
   continue_order: "Tiếp tục mua hàng"
+  view: "Xem"
+  update: "Cập nhật"
+  delete: "Xóa"
+  actions: "Hành động"
+  delete_confirm_title: "Xác nhận xóa"
+  delete_confirm_message: "Bạn có chắc chắn muốn xóa?"
+  cancel: "Hủy"
+  confirm: "Xác nhận"

@@ -1,0 +1,48 @@
+<tr>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm font-medium text-gray-900">ORDER#<%= order.id %></div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="flex items-center">
+      <div class="ml-4">
+        <div class="text-sm font-medium text-gray-900"><%= order.user.name %></div>
+        <div class="text-sm text-gray-500"><%= order.user.email %></div>
+      </div>
+    </div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-900"><%= l order.created_at, format: :long %></div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-900"><%= number_to_currency price_in(order.total_price) %></div>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap">
+    <span class="<%= order.status %> px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+      <%= t "order.status.#{order.status}" %>
+    </span>
+  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+    <div class="flex justify-end space-x-2">
+      <button onclick="openOrderModal('<%= order.id %>')"
+              class="px-3 py-1 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              title="<%= t "view" %>">
+        <i class="fa-solid fa-eye"></i>
+      </button>
+
+      <button onclick="openEditOrderModal('<%= order.id %>')"
+              class="px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-700"
+              title="<%= t "update" %>">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+
+      <button onclick="openDeleteOrderModal('<%= order.id %>')"
+              class="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700"
+              title="<%= t "delete" %>">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  </td>
+</tr>
+<% @order_items = order.order_items %>
+<%= render "orders/order_detail", order: order %>
+<%= render "delete_order_modal", order: order %>
+<%= render "edit_order_modal", order: order %>

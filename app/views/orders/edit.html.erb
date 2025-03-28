@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <%= form_with model: @order, url: checkout_update_path, method: :patch, scope: :order, local: true, class: "space-y-8" do |form| %>
+  <%= form_with model: @order, url: checkout_update_path(user_id: @order.user.id), method: :patch, scope: :order, local: true, class: "space-y-8" do |form| %>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="md:col-span-2 space-y-6">
         <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">

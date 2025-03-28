@@ -69,12 +69,6 @@ class OrdersController < ApplicationController
     @orders = @orders.by_status(params[:status]) if params[:status].present?
   end
   private
-  def logged_in_user?
-    return if logged_in?
-
-    flash[:danger] = t "user.please_login"
-    redirect_to login_path
-  end
 
   def correct_user
     return if current_user.id == params[:user_id].to_i

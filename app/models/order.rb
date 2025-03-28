@@ -1,11 +1,15 @@
 class Order < ApplicationRecord
   ORDER_PARAMS = %i(shipping_address phone_number).freeze
+  ORDER_UPDATE_PARAMS = %i(status).freeze
+  BLOCKED_STATUS = {
+    canceled: :delivered
+  }.freeze
   enum status: {
     draft: -1,
     pending: 0,
     confirmed: 1,
     delivered: 2,
-    cancelled: 3
+    canceled: 3
   }, _prefix: true
 
   validates :status, presence: true,
@@ -24,7 +28,12 @@ class Order < ApplicationRecord
   scope :by_user_id, ->(user_id){where user_id:}
   scope :not_draft, ->{where.not(status: :draft)}
   scope :order_by_created_at, ->{order created_at: :desc}
-  scope :by_status, ->(status){where status:}
+  scope :by_status, lambda {|status|
+    where(status:) if status.present?
+  }
+  scope :by_date, lambda {|date|
+    where created_at: date.to_date.all_day if date.present?
+  }
 
   def calculate_total_price
     order_items.sum do |order_item|
