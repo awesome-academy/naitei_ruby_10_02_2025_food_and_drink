@@ -2,7 +2,10 @@
   <div class="p-6">
     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
       <div>
-        <h2 class="text-lg font-medium text-gray-900"><%= t "order.number" %></h2>
+        <h2 class="text-lg font-medium text-gray-900">
+            <strong><%= t "order.number" %>:</strong>
+            <span class="text-red-600">ORDER#<%= order.id %></span>
+        </h2>
         <p class="text-sm text-gray-500">
           <%= t "order.order_date" %>: <%= l order.created_at, format: :long %>
         </p>
@@ -34,11 +37,9 @@
         <%= link_to t("order.details"), "#",
               onclick: "openOrderModal('#{order.id}'); return false;",
               class: "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" %>
-        <%= button_to t("order.reorder"), orders_path(order_id: order.id),
-              method: :post, class: "px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50" %>
-        <% if order.status == "pending" %>
-          <%= button_to t("order.cancel"), order_path(order),
-                method: :patch, data: { confirm: t("order.confirm_cancel") },
+        <% if order.status_pending? %>
+          <%= button_tag t("order.cancel"),
+                data: { modal_toggle: "cancel-modal-#{order.id}" },
                 class: "px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700" %>
         <% end %>
       </div>
@@ -46,3 +47,6 @@
   </div>
 </div>
 <%= render "order_detail", order: order %>
+<% if order.status_pending? %>
+  <%= render "cancel_order_modal", order: order %>
+<% end %>

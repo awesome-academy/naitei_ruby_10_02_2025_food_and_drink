@@ -1,0 +1,15 @@
+<div id="cancel-modal-<%= order.id %>" class="modal hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+  <div class="bg-white rounded-lg shadow-lg p-6 w-96 border border-gray-200">
+    <h2 class="text-xl font-semibold text-red-600 mb-4"><%= t "order.confirm_cancel_title" %></h2>
+
+    <%= button_to t("confirm"), cancel_order_path(order, user_id: order.user_id),
+          method: :patch,
+          class: "w-full px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition",
+          form: { "data-modal-hide" => "cancel-modal-#{order.id}" } %>
+
+    <button data-modal-hide="cancel-modal-<%= order.id %>"
+      class="mt-4 w-full px-4 py-2 bg-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-400 transition">
+      <%= t "cancel" %>
+    </button>
+  </div>
+</div>
