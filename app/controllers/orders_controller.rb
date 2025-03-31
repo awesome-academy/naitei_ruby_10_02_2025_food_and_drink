@@ -2,8 +2,12 @@ class OrdersController < ApplicationController
   before_action :logged_in_user?,
                 only: %i(edit update view_history cancel_order)
   before_action :correct_user, only: %i(edit update view_history cancel_order)
-  before_action :find_order, only: %i(edit update)
+  before_action :find_product, only: :review_product
+  before_action :find_order_draft, only: %i(edit update)
   before_action :find_order_cancel, only: :cancel_order
+  before_action :find_delivered_order, only: :review_product
+  before_action :check_exist_review,
+                only: %i(review_product review_product_post)
   def create
     product_id = params[:product_id]
     quantity = params[:quantity].to_i
@@ -78,7 +82,22 @@ class OrdersController < ApplicationController
     else
       flash[:danger] = t "order.cancel_failed"
     end
-    redirect_to view_history_path(user_id: current_user.id)
+    redirect_to view_history_path(current_user.id)
+  end
+
+  def review_product
+    @review = Review.new
+  end
+
+  def review_product_post
+    @review = Review.new review_product_params
+    if @review.save
+      flash[:success] = t "review.review_success"
+      redirect_to view_history_path(current_user.id)
+    else
+      find_product
+      render :review_product, status: :unprocessable_entity
+    end
   end
   private
 
@@ -89,8 +108,24 @@ class OrdersController < ApplicationController
     redirect_to root_path
   end
 
+  def review_product_params
+    params.require(:review).permit Review::REVIEW_PARAMS
+  end
+
+  def find_product
+    @product = Product.find_by id: params[:product_id]
+    return if @product
+
+    flash[:danger] = t "product.product_not_found"
+    redirect_to root_path
+  end
+
   def find_order
     @order = Order.find_by id: params[:id]
+  end
+
+  def find_order_draft
+    find_order
     return if @order&.status_draft?
 
     flash[:danger] = t "order.not_found"
@@ -98,11 +133,29 @@ class OrdersController < ApplicationController
   end
 
   def find_order_cancel
-    @order = Order.find_by id: params[:id]
+    find_order
     return if @order&.status_pending?
 
     flash[:danger] = t "order.not_found"
     redirect_to root_path
+  end
+
+  def find_delivered_order
+    find_order
+    return if @order&.status_delivered?
+
+    flash[:danger] = t "order.not_found"
+    redirect_to root_path
+  end
+
+  def check_exist_review
+    product_id = params[:product_id]
+    order_id = params[:id]
+    review = Review.find_by(product_id:, order_id:)
+    return if review.blank?
+
+    flash[:danger] = t "review.review_exist"
+    redirect_to view_history_path(current_user.id)
   end
 
   def order_params

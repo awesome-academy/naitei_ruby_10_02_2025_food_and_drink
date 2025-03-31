@@ -9,7 +9,6 @@ class User < ApplicationRecord
             length: {minimum: Settings.min_password_length}
   has_secure_password
   has_many :orders, dependent: :destroy
-  has_many :reviews, dependent: :destroy
   has_many :messages, class_name: Message.name,
             foreign_key: :sender_id, dependent: :destroy
   has_many :send_chats, class_name: Chat.name,

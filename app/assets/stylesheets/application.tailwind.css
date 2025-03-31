@@ -14,7 +14,7 @@
 .input-field {
   @apply border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300;
 }
-.button-common {
+.common-button {
   @apply flex justify-center items-center mt-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
 }
 .cancel-button {
@@ -55,4 +55,31 @@
       @apply bg-gray-100 border-none rounded-md;
     }
   }
+}
+
+.rating-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.rating-input {
+  display: none;
+}
+
+.rating-star:hover,
+.rating-star:hover ~ .rating-star {
+  color: #FFD700 !important;
+}
+
+.rating-input:checked ~ .rating-star {
+  color: #FFD700 !important;
+}
+
+.rating-star {
+  color: #cccccc;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 1.5rem;
+  padding: 0 0.125rem;
 }
