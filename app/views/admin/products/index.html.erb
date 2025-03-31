@@ -1,0 +1,50 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">
+      <%= t "product.manage_products" %>
+    </h1>
+
+    <div class="flex space-x-2">
+      <%= link_to new_admin_product_path,
+                  class: "px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center" do %>
+        <i class="fa-solid fa-plus mr-2"></i>
+        <%= t "product.add_product" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left th-column">
+              <%= t "activerecord.attributes.product.name" %>
+            </th>
+            <th scope="col" class="px-6 py-3 text-left th-column">
+              <%= t "activerecord.attributes.product.category" %>
+            </th>
+            <th scope="col" class="px-6 py-3 text-left th-column">
+              <%= t "activerecord.attributes.product.price" %>
+            </th>
+            <th scope="col" class="px-6 py-3 text-left th-column">
+              <%= t "activerecord.attributes.product.created_at" %>
+            </th>
+            <th scope="col" class="px-6 py-3 text-right th-column">
+              <%= t "actions" %>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <%= render partial: "product_item", collection: @products, as: :product %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+      <div class="flex justify-center items-center">
+        <%== pagy_nav @pagy %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
     flash[:danger] = t "user.please_login"
     redirect_to login_path
   end
+
+  def authorize_admin
+    return if current_user.admin?
+
+    flash[:danger] = t "user.permission_denied"
+    redirect_to root_path
+  end
 end

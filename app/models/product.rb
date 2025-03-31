@@ -6,7 +6,7 @@ class Product < ApplicationRecord
     [I18n.t("product.sort.name_asc"), Settings.sort_name_asc],
     [I18n.t("product.sort.name_desc"), Settings.sort_name_desc]
   ].freeze
-
+  PRODUCT_PARAMS = [:name, :description, :price, {category_ids: []}].freeze
   validates :name, presence: true,
             length: {maximum: Settings.max_product_name_length}
   validates :price, presence: true,
@@ -37,6 +37,7 @@ class Product < ApplicationRecord
   scope :by_name, lambda {|name|
     where "LOWER(name) LIKE ?", "%#{name.downcase}%" if name.present?
   }
+  scope :by_date_updated, ->{order updated_at: :desc}
   scope :by_sort, lambda {|sort|
     sort_options = {
       Settings.sort_name_asc => {name: :asc},
