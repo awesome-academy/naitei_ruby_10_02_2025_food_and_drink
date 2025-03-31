@@ -57,6 +57,14 @@ en:
     back_to_products_list: "Back to products list"
     related_products: "Related products"
     product_not_found: "Product not found"
+    search_placeholder: "Search for products..."
+    sort:
+      default: "Sort"
+      price_asc: "Price: Low to High"
+      price_desc: "Price: High to Low"
+      name_asc: "Name: A-Z"
+      name_desc: "Name: Z-A"
+    filter: "Filter"
   category:
     name: "Category"
   order:

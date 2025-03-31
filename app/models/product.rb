@@ -1,4 +1,12 @@
 class Product < ApplicationRecord
+  SORT_OPTIONS = [
+    [I18n.t("product.sort.default"), ""],
+    [I18n.t("product.sort.price_asc"), Settings.sort_price_asc],
+    [I18n.t("product.sort.price_desc"), Settings.sort_price_desc],
+    [I18n.t("product.sort.name_asc"), Settings.sort_name_asc],
+    [I18n.t("product.sort.name_desc"), Settings.sort_name_desc]
+  ].freeze
+
   validates :name, presence: true,
             length: {maximum: Settings.max_product_name_length}
   validates :price, presence: true,
@@ -25,5 +33,17 @@ class Product < ApplicationRecord
     if category_id.present?
       joins(:product_categories).where(product_categories: {category_id:})
     end
+  }
+  scope :by_name, lambda {|name|
+    where "LOWER(name) LIKE ?", "%#{name.downcase}%" if name.present?
+  }
+  scope :by_sort, lambda {|sort|
+    sort_options = {
+      Settings.sort_name_asc => {name: :asc},
+      Settings.sort_name_desc => {name: :desc},
+      Settings.sort_price_asc => {price: :asc},
+      Settings.sort_price_desc => {price: :desc}
+    }
+    order(sort_options[sort])
   }
 end
