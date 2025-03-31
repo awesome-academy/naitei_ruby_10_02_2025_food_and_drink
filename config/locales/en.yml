@@ -14,6 +14,13 @@ en:
     vnd_to_usd: 1
   activerecord:
     attributes:
+      product:
+        name: "Product Name"
+        description: "Description"
+        price: "Price"
+        created_at: "Created At"
+        category: "Category"
+        image: "Image"
       order:
         shipping_address: "Shipping Address"
         phone_number: "Phone Number"
@@ -27,13 +34,29 @@ en:
         order:
           attributes:
             shipping_address:
-              blank: "can't be blank"
+              blank: :blank
             phone_number:
-              blank: "can't be blank"
-              invalid: "is invalid"
+              blank: :blank
+              invalid: :invalid
+        product:
+          attributes:
+            name:
+              blank: :blank
+            description:
+              blank: :blank
+            price:
+              blank: :blank
+              not_a_number: :not_a_number
+            category:
+              blank: :blank
+            image:
+              blank: :blank
+              invalid: :invalid
+              too_large: "File size is too large, maximum is 5MB"
       messages:
         blank: "can't be blank"
         invalid: "is invalid"
+        not_a_number: "must be a number"
   english: "English"
   vietnamese: "Vietnamese"
   hello: "Hello"
@@ -51,13 +74,26 @@ en:
     name: "Product"
     view_details: "View details"
     image_format: "Only accept image formats: %{formats}"
-    image_size: "Image size should not exceed 5MB"
+    image_size: "should not exceed 5MB"
     quantity: "Quantity"
     add_to_cart: "Add to cart"
     back_to_products_list: "Back to products list"
     related_products: "Related products"
     product_not_found: "Product not found"
     search_placeholder: "Search for products..."
+    manage_products: "Manage products"
+    add_product: "Add product"
+    update_product: "Update product"
+    delete_product: "Delete product"
+    delete_success: "Delete product successfully"
+    delete_fail: "Delete product failed"
+    create_success: "Create product successfully"
+    update_success: "Update product successfully"
+    create_fail: "Create product failed, please try again"
+    update_fail: "Update product failed, please try again"
+    confirm_delete_title: "Delete confirmation"
+    confirm_delete_message: "Are you sure you want to delete this product?"
+    price: "Giá"
     sort:
       default: "Sort"
       price_asc: "Price: Low to High"
@@ -74,6 +110,7 @@ en:
     add_fail: "Failed to add product to cart"
     sync_cart_failed: "Failed to sync cart"
     your_cart: "Your cart"
+    summary: "Tóm tắt đơn hàng"
     subtotal: "Subtotal"
     shipping_fee: "Shipping fee"
     total: "Total"
@@ -101,7 +138,9 @@ en:
     details: "Order details"
     reorder: "Reorder"
     number: "Order number"
+    cancel: "Cancel order"
     manage_orders: "Manage orders"
+    new_order: "Đơn hàng mới"
     apply_filters: "Apply filters"
     update_status: "Update status"
     update_success: "Update order status successfully"
@@ -121,6 +160,7 @@ en:
     please_login: "Please login to continue..."
     permission_denied: "Permission denied, you are not allowed to access this page"
   all: "All"
+  or: "or"
   continue_order: "Continue shopping"
   view: "View"
   update: "Update"
@@ -130,3 +170,5 @@ en:
   delete_confirm_message: "Are you sure you want to delete this item?"
   cancel: "Cancel"
   confirm: "Confirm"
+  save: "Save"
+  back: "Back"

@@ -49,13 +49,6 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit Order::ORDER_UPDATE_PARAMS
   end
 
-  def authorize_admin
-    return if current_user.admin?
-
-    flash[:danger] = t "user.permission_denied"
-    redirect_to root_path
-  end
-
   def check_valid_status_update
     status_param = edit_order_params[:status]
     if Order::BLOCKED_STATUS[status_param.to_sym] == @order.status.to_sym

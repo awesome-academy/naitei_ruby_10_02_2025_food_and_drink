@@ -1,0 +1,49 @@
+<%= form_with(model: @product, url: @product.new_record? ? admin_products_path : admin_product_path(@product)) do |form| %>
+  <%= render "shared/error_messages", object: form.object %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="mb-4">
+      <%= form.label :name, t("activerecord.attributes.product.name"), class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "w-full border rounded px-3 py-2" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :price, t("activerecord.attributes.product.price"), class: "block text-sm font-medium text-gray-700" %>
+      <%= form.number_field :price, value: @product.price, class: "w-full border rounded px-3 py-2",
+          min: Settings.min_price,
+          max: Settings.max_price,
+          step: "any"
+      %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :description, t("activerecord.attributes.product.description"), class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :description, class: "w-full border rounded px-3 py-2", rows: 4 %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :image, t("activerecord.attributes.product.image"), class: "block text-sm font-medium text-gray-700" %>
+    <div class="flex items-center">
+      <% if @product.image.attached? %>
+        <%= image_tag @product.image, class: "h-20 w-20 rounded-md object-cover mr-4", id: "preview-image-#{@product.id}" %>
+      <% end %>
+      <%= form.file_field :image, class: "w-full border rounded px-3 py-2", required: !@product.image.attached? %>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :categories, t("activerecord.attributes.product.category"), class: "block text-sm font-medium text-gray-700" %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <% @categories.each do |category| %>
+        <div class="flex items-center mb-2">
+          <%= form.check_box :category_ids, { multiple: true, id: "product_category_ids_#{category.id}" }, category.id, nil %>
+          <%= form.label "product_category_ids_#{category.id}", category.name, class: "ml-2 text-sm text-gray-700" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex justify-end space-x-2">
+    <%= form.submit t("save"), class: "px-4 py-2 bg-blue-600 text-white rounded" %>
+  </div>
+<% end %>
