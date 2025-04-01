@@ -68,12 +68,12 @@ class OrdersController < ApplicationController
   def view_history
     @pagy, @orders = pagy Order.by_user_id(params[:user_id])
                                .includes(:order_items)
-                               .includes(:products)
+                               .includes(products: {image_attachment: :blob})
                                .includes(:user)
                                .not_draft
                                .order_by_created_at,
                           limit: Settings.pagy_items
-    @orders = @orders.by_status(params[:status]) if params[:status].present?
+    @orders = @orders.by_status(params[:status])
   end
 
   def cancel_order

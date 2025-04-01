@@ -7,7 +7,7 @@ class Cart
   end
 
   def add_to_cart product_id, quantity
-    product = Product.find_by id: product_id
+    product = find_product product_id
     return false unless product
 
     order = find_or_create_pending_order quantity, product
@@ -22,7 +22,7 @@ class Cart
 
   def add_to_cart_not_logged_in product_id, quantity
     product_id = product_id.to_s
-    product = Product.find_by id: product_id
+    product = find_product product_id
     return false unless product
 
     session[:cart] ||= {}
@@ -61,5 +61,10 @@ class Cart
 
   def update_total_price order
     order.update total_price: order.calculate_total_price
+  end
+
+  private
+  def find_product product_id
+    Product.find_by id: product_id
   end
 end

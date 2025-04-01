@@ -43,7 +43,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.destroy
+    if @product.update deleted_at: Time.zone.now
       flash[:success] = t "product.delete_success"
     else
       flash[:danger] = t "product.delete_fail"

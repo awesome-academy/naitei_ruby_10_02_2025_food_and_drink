@@ -2,7 +2,8 @@ class OrderItemsController < ApplicationController
   before_action :find_order_item, only: %i(update destroy)
 
   def update
-    if @order_item.update update_quantity_params
+    if @order_item.product.deleted? == false &&
+       @order_item.update(update_quantity_params)
       total_price = @order_item.order.calculate_total_price
       render_turbo_stream @order_item, total_price
     else
@@ -18,7 +19,9 @@ class OrderItemsController < ApplicationController
 
     session[:cart][product_id.to_s]["quantity"] = quantity
     total_price = calculate_guest_cart_total
-    product = Product.find_by id: product_id
+    product = find_product product_id
+    return unless product
+
     new_order_item = OrderItem.new(product_id:, quantity:,
                                    unit_price: product.price,
                                    product:)
@@ -40,7 +43,9 @@ class OrderItemsController < ApplicationController
     session[:cart].delete(product_id.to_s)
 
     total_price = calculate_guest_cart_total
-    product = Product.find_by id: product_id
+    product = find_product product_id
+    return unless product
+
     render_turbo_stream_destroy product, total_price
   end
 
@@ -56,6 +61,14 @@ class OrderItemsController < ApplicationController
 
     flash[:danger] = t "order_item.not_found"
     redirect_to cart_path(current_user)
+  end
+
+  def find_product product_id
+    product = Product.find_by id: product_id
+    return product if product
+
+    flash[:danger] = t "product.product_not_found"
+    redirect_to root_path
   end
 
   def calculate_guest_cart_total
