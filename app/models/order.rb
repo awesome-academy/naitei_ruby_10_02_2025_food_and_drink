@@ -24,6 +24,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
+  has_many :reviews, dependent: :destroy
 
   scope :by_user_id, ->(user_id){where user_id:}
   scope :not_draft, ->{where.not(status: :draft)}

@@ -29,6 +29,10 @@ vi:
         created_at: "Ngày đặt hàng"
         status: "Trạng thái"
         total_price: "Tổng cộng"
+      review:
+        name: "Đánh giá"
+        rating: "Sao đánh giá"
+        comment: "Nội dung"
     errors:
       models:
         order:
@@ -57,6 +61,7 @@ vi:
         blank: "không được để trống"
         invalid: "không hợp lệ"
         not_a_number: "phải là một số"
+        greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}"
   english: "Tiếng Anh"
   vietnamese: "Tiếng Việt"
   hello: "Xin chào"
@@ -159,6 +164,21 @@ vi:
   user:
     please_login: "Vui lòng đăng nhập để tiếp tục..."
     permission_denied: "Bạn không có quyền truy cập trang này"
+  review:
+    name: "Đánh giá sản phẩm"
+    rating: "Đánh giá sản phẩm"
+    comment: "Nội dung"
+    rating_placeholder: "Chia sẻ trải nghiệm của bạn về sản phẩm này..."
+    review_guidelines: "Hướng dẫn đánh giá"
+    description1: "Đánh giá của bạn sẽ giúp những người dùng khác đưa ra quyết định mua hàng tốt hơn."
+    description2: "Hãy chia sẻ trải nghiệm thực tế của bạn với sản phẩm."
+    description3: "Đánh giá nên khách quan và trung thực."
+    description4: "Không sử dụng ngôn từ xúc phạm hoặc quảng cáo trong đánh giá."
+    review_success: "Đánh giá sản phẩm thành công"
+    review_exist: "Bạn đã đánh giá sản phẩm này rồi"
+    review:
+      one: "đánh giá"
+      other: "đánh giá"
   all: "Tất cả"
   or: "hoặc"
   continue_order: "Tiếp tục mua hàng"

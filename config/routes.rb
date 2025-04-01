@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     patch "/checkout/:id", to: "orders#update", as: "checkout_update"
     get "users/:user_id/orders/history", to: "orders#view_history", as: "view_history"
     patch "/orders/cancel_order/:id", to: "orders#cancel_order", as: "cancel_order"
+    get "/orders/:id/review-product/:product_id", to: "orders#review_product", as: "review_product"
+    post "/orders/:id/review-product/:product_id", to: "orders#review_product_post", as: "review_product_post"
 
     resources :order_items, only: %i(update destroy)
     patch "/guest_cart_items/:product_id", to: "order_items#update_guest_cart_item", as: "update_guest_cart_item"
