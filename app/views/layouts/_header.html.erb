@@ -24,10 +24,8 @@
                 <%= t "order.name" %>
               <% end %>
             <% end %>
-          <%= link_to "#", class: "nav-item" do %>
-            <i class="fa-solid fa-message mr-1 h-4 w-4"></i>
-            <%= t "message.name" %>
-          <% end %>
+            <%= link_to t("english"), { locale: :en }, class: "drop-down-item" %>
+            <%= link_to t("vietnamese"), { locale: :vi }, class: "drop-down-item" %>
         </nav>
       </div>
 
@@ -55,8 +53,6 @@
               <%= link_to "#", class: "drop-down-item" do %>
                 <%= t "order.order_history" %>
               <% end %>
-              <%= link_to t("english"), { locale: :en }, class: "drop-down-item" %>
-              <%= link_to t("vietnamese"), { locale: :vi }, class: "drop-down-item" %>
               <div class="border-t border-gray-100"></div>
               <%= form_with url: logout_path, method: :delete do %>
                 <button type="submit" class="w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center">

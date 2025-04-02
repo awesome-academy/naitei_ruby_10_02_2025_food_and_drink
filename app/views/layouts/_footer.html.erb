@@ -1,0 +1,44 @@
+<footer class="bg-gray-100 py-12 mt-auto">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-4"><%= Settings.app_name %></h3>
+        <p class="text-gray-500 mb-4"><%= t "app.description" %></p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4"><%= t "footer.links.title" %></h3>
+        <ul class="space-y-2">
+          <li><%= link_to t("footer.links.home"), "#", class: "text-gray-500 hover:text-gray-900" %></li>
+          <li><%= link_to t("footer.links.products"), "#", class: "text-gray-500 hover:text-gray-900" %></li>
+          <li><%= link_to t("footer.links.about"), "#", class: "text-gray-500 hover:text-gray-900" %></li>
+          <li><%= link_to t("footer.links.contact"), "#", class: "text-gray-500 hover:text-gray-900" %></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4"><%= t "footer.contact.title" %></h3>
+        <ul class="space-y-2 text-gray-500">
+          <li><%= t "footer.contact.address" %></li>
+          <li><%= t "footer.contact.email" %></li>
+          <li><%= t "footer.contact.hotline" %></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4"><%= t "footer.follow_us" %></h3>
+        <div class="flex space-x-4">
+          <%= link_to "#", class: "text-gray-500 hover:text-gray-900" do %>
+            <i class="fa-brands fa-facebook"></i>
+          <% end %>
+          <%= link_to "#", class: "text-gray-500 hover:text-gray-900" do %>
+            <i class="fa-brands fa-instagram"></i>
+          <% end %>
+          <%= link_to "#", class: "text-gray-500 hover:text-gray-900" do %>
+            <i class="fa-brands fa-twitter"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500">
+      <p>&copy; <span id="current-year"></span> <%= Settings.app_name %>. <%= t "footer.copyright" %></p>
+    </div>
+  </div>
+</footer>

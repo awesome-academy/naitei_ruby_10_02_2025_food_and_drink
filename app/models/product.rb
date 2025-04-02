@@ -48,4 +48,10 @@ class Product < ApplicationRecord
     }
     order(sort_options[sort])
   }
+  scope :featured_products, (lambda do
+    joins(:order_items)
+      .group("products.id")
+      .order("COUNT(order_items.id) DESC")
+      .limit(Settings.home_page_items)
+  end)
 end

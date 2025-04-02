@@ -1,0 +1,61 @@
+<div>
+  <section class="relative h-[500px] w-full">
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-blue-400/40">
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+    <div class="relative h-full flex flex-col items-center justify-center text-center text-white p-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4"><%= t "home_page.hero.title" %></h1>
+      <p class="text-lg md:text-xl mb-8 max-w-2xl"><%= t "home_page.hero.description" %></p>
+    </div>
+  </section>
+
+  <section class="container mx-auto px-4 py-12">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold"><%= t "home_page.categories.title" %></h2>
+      <%= link_to products_path, class: "text-blue-600 hover:underline flex items-center" do %>
+        <%= t "all" %> <i class="fa-solid fa-arrow-right ml-1 h-4 w-4"></i>
+      <% end %>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <%= render partial: "categories/category", collection: @categories, as: :category %>
+    </div>
+  </section>
+
+  <section class="container mx-auto px-4 py-12 bg-gray-50">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold"><%= t "home_page.featured_products.title" %></h2>
+      <%= link_to products_path, class: "text-blue-600 hover:underline flex items-center" do %>
+        <%= t "all" %> <i class="fa-solid fa-arrow-right ml-1 h-4 w-4"></i>
+      <% end %>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <%= render partial: "products/product", collection: @products, as: :product %>
+    </div>
+  </section>
+
+  <section class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="flex flex-col items-center text-center p-6 rounded-lg border bg-white shadow-sm">
+        <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <i class="fa-solid fa-plus text-blue-600"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2"><%= t "home_page.features.easy_order.title" %></h3>
+        <p class="text-gray-500"><%= t "home_page.features.easy_order.description" %></p>
+      </div>
+      <div class="flex flex-col items-center text-center p-6 rounded-lg border bg-white shadow-sm">
+        <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <i class="fa-solid fa-shield-alt text-blue-600"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2"><%= t "home_page.features.secure_payment.title" %></h3>
+        <p class="text-gray-500"><%= t "home_page.features.secure_payment.description" %></p>
+      </div>
+      <div class="flex flex-col items-center text-center p-6 rounded-lg border bg-white shadow-sm">
+        <div class="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <i class="fa-solid fa-bolt text-blue-600"></i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2"><%= t "home_page.features.fast_delivery.title" %></h3>
+        <p class="text-gray-500"><%= t "home_page.features.fast_delivery.description" %></p>
+      </div>
+    </div>
+  </section>
+</div>
