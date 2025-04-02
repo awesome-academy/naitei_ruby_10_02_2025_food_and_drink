@@ -1,10 +1,11 @@
 module OrdersHelper
   def cart_items_count
-    if logged_in?
-      pending_order = current_user.orders.find_by status: :draft
-      pending_order&.order_items&.count || 0
-    else
-      session[:cart]&.count || 0
-    end
+    return session[:cart]&.count || 0 unless logged_in?
+
+    current_user.orders
+                .by_status(:draft)
+                .joins(order_items: :product)
+                .where(products: {deleted_at: nil})
+                .count
   end
 end

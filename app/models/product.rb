@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  acts_as_paranoid
   SORT_OPTIONS = [
     [I18n.t("product.sort.default"), ""],
     [I18n.t("product.sort.price_asc"), Settings.sort_price_asc],

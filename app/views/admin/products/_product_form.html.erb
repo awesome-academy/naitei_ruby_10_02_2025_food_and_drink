@@ -27,7 +27,7 @@
       <% if @product.image.attached? %>
         <%= image_tag @product.image, class: "h-20 w-20 rounded-md object-cover mr-4", id: "preview-image-#{@product.id}" %>
       <% end %>
-      <%= form.file_field :image, class: "w-full border rounded px-3 py-2", required: !@product.image.attached? %>
+      <%= form.file_field :image, class: "w-full border rounded px-3 py-2", id: "image-input-#{@product.id}", required: !@product.image.attached? %>
     </div>
   </div>
 

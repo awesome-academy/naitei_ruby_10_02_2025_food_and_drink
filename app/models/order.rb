@@ -23,7 +23,7 @@ class Order < ApplicationRecord
             format: {with: Regexp.new(Settings.valid_phone_regex)}
   belongs_to :user
   has_many :order_items, dependent: :destroy
-  has_many :products, through: :order_items
+  has_many :products, ->{with_deleted}, through: :order_items
   has_many :reviews, dependent: :destroy
 
   scope :by_user_id, ->(user_id){where user_id:}
@@ -35,7 +35,6 @@ class Order < ApplicationRecord
   scope :by_date, lambda {|date|
     where created_at: date.to_date.all_day if date.present?
   }
-
   def calculate_total_price
     order_items.sum do |order_item|
       order_item.quantity * order_item.unit_price
