@@ -62,6 +62,42 @@ vi:
         invalid: "không hợp lệ"
         not_a_number: "phải là một số"
         greater_than_or_equal_to: "phải lớn hơn hoặc bằng %{count}"
+  app:
+    description: "Thưởng thức đồ ăn và đồ uống ngon mọi lúc mọi nơi."
+  footer:
+    links:
+      title: "Liên kết"
+      home: "Trang chủ"
+      products: "Sản phẩm"
+      about: "Về chúng tôi"
+      contact: "Liên hệ"
+    contact:
+      title: "Liên hệ"
+      address: "123 Đường ABC, Quận XYZ"
+      email: "Email: info@fooddrink.com"
+      hotline: "Hotline: 1900 1234"
+    follow_us: "Theo dõi chúng tôi"
+    copyright: "Tất cả quyền được bảo lưu."
+  home_page:
+    hero:
+      title: "Thưởng thức đồ ăn & đồ uống ngon"
+      description: "Đặt hàng trực tuyến và nhận giao hàng tận nơi nhanh chóng"
+    search:
+      placeholder: "Tìm kiếm món ăn, đồ uống..."
+    categories:
+      title: "Danh mục"
+    featured_products:
+      title: "Sản phẩm nổi bật"
+    features:
+      easy_order:
+        title: "Đặt hàng dễ dàng"
+        description: "Chỉ vài thao tác đơn giản để đặt món ăn và đồ uống yêu thích"
+      secure_payment:
+        title: "Thanh toán an toàn"
+        description: "Nhiều phương thức thanh toán an toàn và bảo mật"
+      fast_delivery:
+        title: "Giao hàng nhanh chóng"
+        description: "Giao hàng tận nơi trong vòng 30 phút"
   english: "Tiếng Anh"
   vietnamese: "Tiếng Việt"
   hello: "Xin chào"

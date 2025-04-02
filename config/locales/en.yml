@@ -62,6 +62,42 @@ en:
         invalid: "is invalid"
         not_a_number: "must be a number"
         greater_than_or_equal_to: "must be greater than or equal to %{count}"
+  app:
+    description: "Enjoy delicious food and drinks anytime, anywhere."
+  footer:
+    links:
+      title: "Links"
+      home: "Home"
+      products: "Products"
+      about: "About Us"
+      contact: "Contact"
+    contact:
+      title: "Contact"
+      address: "123 ABC Street, XYZ District"
+      email: "Email: info@fooddrink.com"
+      hotline: "Hotline: 1900 1234"
+    follow_us: "Follow Us"
+    copyright: "All rights reserved."
+  home_page:
+    hero:
+      title: "Enjoy Delicious Food & Drinks"
+      description: "Order online and get fast home delivery"
+    search:
+      placeholder: "Search for food, drinks..."
+    categories:
+      title: "Categories"
+    featured_products:
+      title: "Featured Products"
+    features:
+      easy_order:
+        title: "Easy Ordering"
+        description: "Just a few simple steps to order your favorite food and drinks"
+      secure_payment:
+        title: "Secure Payment"
+        description: "Multiple secure and safe payment methods"
+      fast_delivery:
+        title: "Fast Delivery"
+        description: "Get delivery within 30 minutes"
   english: "English"
   vietnamese: "Vietnamese"
   hello: "Hello"
